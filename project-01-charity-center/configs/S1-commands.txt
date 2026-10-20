@@ -1,0 +1,38 @@
+enable
+configure terminal
+hostname S1
+vlan 10
+ name ADMIN
+vlan 20
+ name VOLUNTEERS
+vlan 30
+ name GUESTS
+vlan 40
+ name SERVERS
+vlan 99
+ name MANAGEMENT
+exit
+
+interface gigabitEthernet0/1
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,99
+exit
+interface gigabitEthernet0/2
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,99
+exit
+interface fastEthernet0/1
+ switchport mode access
+ switchport access vlan 10
+exit
+interface fastEthernet0/2
+ switchport mode access
+ switchport access vlan 40
+exit
+interface vlan 99
+ ip address 10.10.99.11 255.255.255.0
+ no shutdown
+exit
+ip default-gateway 10.10.99.1
+end
+write memory

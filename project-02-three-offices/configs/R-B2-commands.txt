@@ -1,0 +1,32 @@
+enable
+configure terminal
+hostname R-B2
+interface gigabitEthernet0/0
+ ip address 10.20.2.1 255.255.255.0
+ no shutdown
+exit
+interface gigabitEthernet0/1
+ ip address 10.255.13.2 255.255.255.252
+ no shutdown
+exit
+interface gigabitEthernet0/2
+ ip address 10.255.23.2 255.255.255.252
+ no shutdown
+end
+write memory
+
+configure terminal
+router ospf 1
+ router-id 3.3.3.3
+ network 10.20.2.0 0.0.0.255 area 0
+ network 10.255.13.0 0.0.0.3 area 0
+ network 10.255.23.0 0.0.0.3 area 0
+ passive-interface gigabitEthernet0/0
+end
+write memory
+
+configure terminal
+interface gigabitEthernet0/0
+ ip helper-address 10.20.0.1
+end
+write memory

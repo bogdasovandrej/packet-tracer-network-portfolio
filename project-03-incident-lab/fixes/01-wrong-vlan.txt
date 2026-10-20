@@ -1,0 +1,7 @@
+enable
+configure terminal
+interface fastEthernet0/2
+ switchport mode access
+ switchport access vlan 30
+end
+write memory
