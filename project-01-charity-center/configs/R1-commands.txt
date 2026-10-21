@@ -80,6 +80,8 @@ write memory
 enable
 configure terminal
 ip access-list extended GUEST_IN
+ 1 permit udp any eq 68 any eq 67
+ 5 permit udp 10.10.30.0 0.0.0.255 any eq 67
  deny ip 10.10.30.0 0.0.0.255 10.10.0.0 0.0.255.255
  permit ip 10.10.30.0 0.0.0.255 any
 exit
@@ -93,7 +95,10 @@ enable
 configure terminal
 ip domain-name help.local
 username netadmin privilege 15 secret YOUR_PASSWORD
-crypto key generate rsa modulus 1024
+crypto key generate rsa
+
+1024
+
 ip ssh version 2
 access-list 10 permit 10.10.10.0 0.0.0.255
 line vty 0 4
