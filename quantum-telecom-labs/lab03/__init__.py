@@ -1,0 +1,1 @@
+"""Educational key management service."""
