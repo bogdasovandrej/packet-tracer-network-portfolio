@@ -2,6 +2,8 @@
 
 Начни с `guide.docx`. Схема — `topology.png`. Файлы в `configs/` содержат последовательность ввода для ручной настройки и не являются автоматически снятым `show running-config`.
 
+Если расставил устройства как на скриншоте из нашего разбора, роли такие: Router0 → R1 CENTER, Router1 → R2 ISP, Switch0 → S1, Switch1 → S2, Server0 → Internal Server, Server1 → Public Server, PC2 → PC Admin, PC0 → PC Volunteer, PC1 → PC Guest. Переименуй их через Config → Display Name до подключения. Полная карта восьми кабелей и точные порты находятся в разделе 4 руководства; красный порт маршрутизатора до `no shutdown` не означает, что нужно менять кабель.
+
 Файл `charity-center-vlan-nat-acl.pkt` собран в Packet Tracer 9.0. PC Admin получил `10.10.10.21`, PC Volunteer — `10.10.20.21`, PC Guest — `10.10.30.21`; шлюзы и DNS выданы DHCP. Simple PDU гость → внутренний сервер завершился `Failed`, администратор → внутренний сервер и гость → внешний сервер — `Successful` при повторной отправке после ARP. Внешний ICMP проходит через NAT. HTTP, разрешение DNS-имён и SSH требуют отдельной проверки в симуляторе.
 
 ## Практическое применение
